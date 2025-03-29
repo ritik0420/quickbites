@@ -11,7 +11,7 @@ import configRoute from './routes/configRoute.js';
 
 //app config
 const app = express();
-const port = 4000;
+
 
 //middleware
 app.use(express.json())
@@ -36,5 +36,3 @@ app.get("/", (req,res) => {
 app.listen(port, () =>{
     console.log(`Server is running on port ${port}`)
 })
-
-//mongodb+srv://ritikkaintura:8433148843@cluster0.chqly.mongodb.net/?

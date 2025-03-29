@@ -11,10 +11,11 @@ import configRoute from './routes/configRoute.js';
 
 //app config
 const app = express();
+const port = 4000;
 
 //middleware
-app.use(express.json());
-app.use(cors());
+app.use(express.json())
+app.use(cors())
 
 //db connection
 connectDB();
@@ -28,9 +29,11 @@ app.use("/api/orders", orderRouter);
 app.use("/api/payments", paymentRouter);
 app.use("/api", configRoute);
 
-app.get("/", (req, res) => {
-    res.send("API WORKING fine");
-});
+app.get("/", (req,res) => {
+   res.send("API WORKING fine")
+})
 
-// Export the app for Vercel
-export default app;
+app.listen(port, () =>{
+    console.log(`Server is running on port ${port}`)
+})
+

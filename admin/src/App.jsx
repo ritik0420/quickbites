@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
-  const url='https://quickbites-qltf.vercel.app/'
+  const url='https://quickbites-qltf.vercel.app'
 
   return (
     <div>

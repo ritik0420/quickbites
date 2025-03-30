@@ -51,6 +51,11 @@ const PlaceOrder = () => {
     const { name, value } = event.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
+  console.log("🔍 Checking localStorage before verifyPayment:");
+console.log("mongo_order_id:", localStorage.getItem("mongo_order_id"));
+console.log("razorpay_order_id:", localStorage.getItem("razorpay_order_id"));
+console.log("razorpay_payment_id:", localStorage.getItem("razorpay_payment_id"));
+
   
   const verifyPayment = async (response) => {
     console.log("Payment Response from Razorpay:", response); // ✅ Log response

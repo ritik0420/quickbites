@@ -4,7 +4,7 @@ import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const frontend_url = "http://localhost:5173";
+const frontend_url = "https://quickbites-nine.vercel.app";
 const PlaceOrder = () => {
 
   const navigate = useNavigate();

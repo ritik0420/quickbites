@@ -70,7 +70,7 @@ console.log("razorpay_payment_id:", localStorage.getItem("razorpay_payment_id"))
         razorpay_order_id: response.razorpay_order_id,
         razorpay_payment_id: response.razorpay_payment_id,
         razorpay_signature: response.razorpay_signature,
-        order_id: localStorage.getItem("current_order_id"),
+        order_id: localStorage.getItem("mongo_order_id"),
       };
 
       console.log("Sending Verification Payload:", verifyData); // ✅ Log before sending

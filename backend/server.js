@@ -13,6 +13,18 @@ import configRoute from './routes/configRoute.js';
 const app = express();
 const port = 4000;
 
+const allowedOrigins = ["https://quickbites-nine.vercel.app"];
+
+// ✅ Middleware
+app.use(express.json());
+app.use(
+  cors({
+    origin: allowedOrigins, // Allow only your frontend domain
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true, // Allow cookies and headers
+  })
+);
+
 //middleware
 app.use(express.json())
 app.use(cors())

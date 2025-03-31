@@ -13,7 +13,7 @@ import configRoute from './routes/configRoute.js';
 const app = express();
 const port = 4000;
 
-const allowedOrigins = ["https://quickbites-nine.vercel.app"];
+const allowedOrigins = ["https://quickbites-three.vercel.app"];
 
 // ✅ Middleware
 app.use(express.json());

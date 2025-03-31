@@ -8,7 +8,7 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-const frontend_url = "https://quickbites-nine.vercel.app";
+const frontend_url = "https://quickbites-three.vercel.app";
 
 // **Placing an order using Razorpay**
 const placeOrder = async (req, res) => {
@@ -190,5 +190,5 @@ const updateStatus = async (req, res) => {
 }
 
 
-export { placeOrder, verifyOrder, getPaymentDetails, updatePayment, userOrders,listOrders,updateStatus };
+export { placeOrder, verifyOrder, getPaymentDetails, updatePayment, userOrders,listOrders,updateStatus,frontend_url };
 

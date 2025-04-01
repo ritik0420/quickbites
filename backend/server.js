@@ -13,20 +13,33 @@ import configRoute from './routes/configRoute.js';
 const app = express();
 const port = 4000;
 
-const allowedOrigins = ["https://quickbites-three.vercel.app"];
-
-// ✅ Middleware
-app.use(express.json());
-app.use(
-  cors({
-    origin: allowedOrigins, // Allow only your frontend domain
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true, // Allow cookies and headers
-  })
-);
-
 //middleware
-app.use(express.json())
+const allowedOrigins = ["http://localhost:5173", "https://quickbites-three.vercel.app"];
+
+app.use(express.json());
+
+// ✅ Force CORS Headers for All Requests
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // Temporarily allow all origins
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.json({ message: "CORS is working!" });
+
+  // Handle Preflight Requests
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
+// ✅ Enable CORS Middleware
+app.use(cors({
+  origin: allowedOrigins,
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
+}));
 
 //db connection
 connectDB();

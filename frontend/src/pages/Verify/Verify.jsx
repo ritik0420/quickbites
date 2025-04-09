@@ -3,6 +3,8 @@ import "./Verify.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Verify = () => {
   const { url, token, clearCart } = useContext(StoreContext);
@@ -12,8 +14,8 @@ const Verify = () => {
 
   useEffect(() => {
     const verifyPayment = async () => {
-      const success = searchParams.get("success"); // ✅ Get `success` from URL
-      const orderId = searchParams.get("orderId"); // ✅ Get `orderId` from URL
+      const success = searchParams.get("success");
+      const orderId = searchParams.get("orderId");
 
       const razorpayOrderId = localStorage.getItem("razorpay_order_id");
       const razorpayPaymentId = localStorage.getItem("razorpay_payment_id");
@@ -27,7 +29,7 @@ const Verify = () => {
       console.log("LocalStorage Razorpay Signature:", razorpaySignature);
 
       if (success !== "true" || !orderId || !razorpayOrderId || !razorpayPaymentId || !razorpaySignature) {
-        alert("Missing or incorrect payment details. Redirecting...");
+        toast.error("Missing or incorrect payment details. Redirecting...");
         navigate("/cart");
         return;
       }
@@ -48,15 +50,16 @@ const Verify = () => {
         console.log("🔍 Verification Response:", verifyRes.data);
 
         if (verifyRes.data.success) {
+          toast.success("✅ Payment Verified!");
           clearCart();
           navigate("/myOrders");
         } else {
-          alert("❌ Payment Verification Failed!");
+          toast.error("❌ Payment Verification Failed!");
           navigate("/cart");
         }
       } catch (error) {
         console.error("🚨 Payment Verification Error:", error);
-        alert("⚠️ Error verifying payment!");
+        toast.error("⚠️ Error verifying payment!");
         navigate("/cart");
       }
     };
@@ -66,6 +69,7 @@ const Verify = () => {
 
   return (
     <div className="verify">
+      <ToastContainer />
       {loading ? <div className="spinner"></div> : <p>Redirecting...</p>}
     </div>
   );
